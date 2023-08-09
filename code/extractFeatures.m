@@ -1,5 +1,39 @@
-function Desc = extractFeatures(fs, const)
+function invariants = extractFeatures(fs, xs, ys, zs, const)    
     N = size(const.Wc,1);
+    
+    % Translate const.Wc computed in prepStep so its geometric center moves from 
+    % the unique point ((N-1)/2,(N-1)/2,(N-1)/2) to the point-of-interest (xs,ys,zs).
+    W = zeros(N,N,N);
+    xmove = round( xs - (N-1)/2 );
+    if xmove > 0
+        W( 1+xmove : N, : , : ) = const.Wc( 1 : N-xmove, : , : ); % 1~S -> (1+xmove)~(S+xmove), outside the grid S -> 0
+    elseif xmove < 0
+        W( 1 : N+xmove, : , : ) = const.Wc( 1-xmove : N, : , : );
+    else
+        W = const.Wc;
+    end
+    
+    Wt = zeros(N,N,N);
+    ymove = round( ys - (N-1)/2 );
+    if ymove > 0
+        Wt( : , 1+ymove : N, : ) = W( : , 1 : N-ymove, : );
+    elseif ymove < 0
+        Wt( : , 1 : N+ymove, : ) = W( : , 1-ymove : N, : );
+    else
+        Wt = W;
+    end
+    clear W;
+
+    Ws = zeros(N,N,N);
+    zmove = round(zs - (N-1)/2);
+    if zmove > 0
+        Ws(:,:,1+zmove:N) = Wt(:,:,1:N-zmove);
+    elseif zmove < 0
+        Ws(:,:,1 : N+zmove) = Wt(:,:,1-zmove : N);
+    else
+        Ws=Wt;
+    end
+    clear Wt;
 
     % weighted image ftilde
     ftilde = fs .* const.Wc;
@@ -103,7 +137,7 @@ function Desc = extractFeatures(fs, const)
     % 3D weighted Krawtchouk moment invariants
     Q = zeros(const.order+1,const.order+1,const.order+1);
     num = length(allVL1(const.order,const.order,'<='));
-    Desc = zeros(1, num - 7);
+    invariants = zeros(1, num - 7);
     idx = 1;
     for n = 0:const.order
         for m = 0:const.order
@@ -118,7 +152,7 @@ function Desc = extractFeatures(fs, const)
                     end
                     Q(n+1,m+1,l+1) = Q(n+1,m+1,l+1) ./ sqrt(const.rho(n+1,m+1,l+1));
                     if ~((n==0&&m==0&&l==0) || (n==1&&m==0&&l==0) || (n==0&&m==1&&l==0) || (n==0&&m==0&&l==1) || (n==0&&m==1&&l==1) || (n==1&&m==0&&l==1) || (n==1&&m==1&&l==0))
-                        Desc(1,idx) = Q(n+1,m+1,l+1);
+                        invariants(1,idx) = Q(n+1,m+1,l+1);
                         idx = idx + 1;
                     end
                 end
@@ -126,7 +160,6 @@ function Desc = extractFeatures(fs, const)
         end
     end
     clear V;
-
 
 
     
