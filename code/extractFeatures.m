@@ -146,7 +146,7 @@ function invariants = extractFeatures(fs, local, poi, const)
     
     % 3D weighted Krawtchouk moment invariants
     Q = zeros(const.order+1,const.order+1,const.order+1);
-    num = length(allVL1(const.order,const.order,'<='));
+    num = length(allVL1(3,const.order,'<='));
     if const.order > 2
         invariants = zeros(1, num - 7);
     else
