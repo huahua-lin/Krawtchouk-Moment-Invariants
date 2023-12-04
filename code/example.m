@@ -1,4 +1,4 @@
-path = '1gco.stl';
+path = '';
 dim = 128;
 img = readImage(path, dim);
-invariants = get3DKMI(img, dim, 5);
+invariants = get3DKMI(img, dim);
