@@ -1,4 +1,4 @@
-function invariants = get3DKMI(mask, S, varargin)
+function invariants = get3DKMI(arr, dim, varargin)
 % get3DKMI Extract the Krawtchouk Moment Invariants (KMI) for 3D images
 %==========================================================================
 % AUTHOR        Huahua Lin
@@ -6,18 +6,18 @@ function invariants = get3DKMI(mask, S, varargin)
 % INSTITUTION   The University of Southampton
 % DATE          August 2023
 %
-% USAGE         invariants = get3DKMI(mask, S)
-%        or...  invariants = get3DKMI(mask, S, poi)
-%        or...  invariants = get3DKMI(mask, S, order)
-%        or...  invariants = get3DKMI(mask, S, poi, order)
+% USAGE         invariants = get3DKMI(arr, dim)
+%        or...  invariants = get3DKMI(arr, dim, POI)
+%        or...  invariants = get3DKMI(arr, dim, order)
+%        or...  invariants = get3DKMI(arr, dim, POI, order)
 %
 % INPUTS
 %
-%               mask   - Mandatory   - NxNxN array  - An array defining the 3D image.
+%               arr    - Mandatory    - NxNxN array - An array defining the 3D image.
 %
-%               S      - Mandatory   - int          - An integer defining the intended size of the mask.
+%               dim    - Mandatory    - int         - An integer defining the intended size of the arr.
 %
-%               poi    - Optional     - 1x3 array   - The x,y,z coordinates of point-of-interest.
+%               POI    - Optional     - 1x3 array   - The x,y,z coordinates of point-of-interest.
 %
 %               order  - Optional     - int         - The order of the moments.
 %
@@ -25,26 +25,26 @@ function invariants = get3DKMI(mask, S, varargin)
 %
 %               invariants  - 1xP array   - Krawtchouk moment invariants
 %==========================================================================
-if ndims(mask) ~= 3
+if ndims(arr) ~= 3
     error('Incorrect dimensions. Please input a 3D array.')
 end
 
-if S <= 1
+if dim <= 1
     error('Incorrect value of the size.')
 end
 
-if mod(S,2)==1
-    S = S-1;  % S is an even number
+if mod(dim,2)==1
+    dim = dim-1;  % dim is an even number
 end
 
 resizeScale = 1;
-if any(size(mask) ~=S )
-    resizeScale = S / max([size(mask,1), size(mask,2), size(mask,3)]);
-    scaledMask = imresize3(mask, resizeScale);
-    img = zeros(S, S, S);
-    img(1:size(scaledMask,1), 1:size(scaledMask,2), 1:size(scaledMask,3)) = scaledMask;
+if any(size(arr) ~= dim)
+    resizeScale = dim / max([size(arr,1), size(arr,2), size(arr,3)]);
+    scaledArr = imresize3(arr, resizeScale);
+    img = zeros(dim, dim, dim);
+    img(1:size(scaledArr,1), 1:size(scaledArr,2), 1:size(scaledArr,3)) = scaledArr;
 else
-    img = mask;
+    img = arr;
 end
 
 if length(varargin) > 2
@@ -72,5 +72,5 @@ for idx = 1:length(varargin)
     
 end
 
-const = prepStep(S, order);
+const = prepStep(dim, order);
 invariants = extractFeatures(img, local, relPOI, const);

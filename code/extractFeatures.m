@@ -1,5 +1,3 @@
-% extractFeatures.m -- This file is part of 3DKMI.
-%
 % This script follows the processes of calculating the 3D Krawtchouk moment invariants. 
 
 function invariants = extractFeatures(fs, local, poi, const)    
@@ -78,7 +76,7 @@ function invariants = extractFeatures(fs, local, poi, const)
     sumftilde2 = squeeze(sum(ftilde, 2));
     sumftilde3 = sum(ftilde, 3); 
 
-    % central moments (6)
+    % central moments
     mu200 = sum((xMinuSxtilde.^2)' .* sumftilde23);
     mu020 = sum((yMinuSytilde.^2) .* sumftilde13);
     mu002 = sum((zMinuSztilde.^2)' .* sumftilde12);
@@ -86,7 +84,7 @@ function invariants = extractFeatures(fs, local, poi, const)
     mu101 = sum(sum(xMinuSxtilde' * zMinuSztilde .* sumftilde2));
     mu011 = sum(sum(yMinuSytilde' * zMinuSztilde .* sumftilde1));
 
-    % construct the inertia matrix (8)
+    % construct the inertia matrix
     inertiaXX = mu020 + mu002;
     inertiaYY = mu200 + mu002;
     inertiaZZ = mu200 + mu020;
@@ -118,7 +116,7 @@ function invariants = extractFeatures(fs, local, poi, const)
     phi2 = (U(1,2)*X + U(2,2)*Y + U(3,2)*Z)/nthroot(M000,3) + (S-1)/2;
     phi3 = (U(1,3)*X + U(2,3)*Y + U(3,3)*Z)/nthroot(M000,3) + (S-1)/2;
 
-    % geometric moment invariants (10)
+    % geometric moment invariants
     V = zeros(const.order+1,const.order+1,const.order+1);
     ftildeAi = ftilde;
     for i = 0:const.order

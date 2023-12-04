@@ -1,5 +1,3 @@
-% prepStep.m -- This file is part of 3DKMI.
-%
 % This script follows the processes of calculating the 3D weight function, the 3D norms, and the coefficients.
 
 function const = prepStep(N, order)
