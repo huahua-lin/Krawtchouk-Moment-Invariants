@@ -76,44 +76,6 @@ function [gridOUTPUT,varargout] = VOXELISE(gridX,gridY,gridZ,varargin)
 %   - Tracing in only one direction (eg. raydirection='z') is faster, but
 %     can potentially lead to artefacts where a ray exactly crosses
 %     several facet edges.
-%
-% REFERENCES
-%
-%   - This code uses a ray intersection method similar to that described by:
-%     Patil S and Ravi B.  Voxel-based representation, display and
-%     thickness analysis of intricate shapes. Ninth International
-%     Conference on Computer Aided Design and Computer Graphics (CAD/CG
-%     2005)
-%==========================================================================
-
-%==========================================================================
-% VERSION USER CHANGES
-% ------- ---- -------
-% 100510  AHA  Original version.
-% 100514  AHA  Now works with non-STL input.  Changes also provide a
-%              significant speed improvement.
-% 100520  AHA  Now optionally output the grid x,y,z coordinates.
-%              Robustness also improved.
-% 100614  AHA  Define gridOUTPUT as a logical array to improve memory
-%              efficiency.
-% 100615  AHA  Reworked the ray interpolation code to correctly handle
-%              logical arrays.
-% 100623  AHA  Enable ray-tracing in any combination of the x,y,z
-%              directions.
-% 100628  AHA  Allow input to be a structure containing [faces,vertices]
-%              data, similar to the type of structure output by
-%              isosurface.
-% 100907  AHA  Now allow the grid to be smaller than the mesh dimensions.
-% 101126  AHA  Simplified code, slight speed improvement, more robust.
-%              Changed handling of automatic grid generation to reduce
-%              chance of artefacts.
-% 101201  AHA  Fixed bug in automatic grid generation.
-% 110303  AHA  Improved method of finding which mesh facets can possibly
-%              be crossed by each ray.  Up to 80% reduction in run-time.
-% 111104  AHA  Housekeeping tidy-up.
-% 130212  AHA  Added checking of ray/vertex intersections, which reduces
-%              artefacts in situations where the mesh vertices are located
-%              directly on ray paths in the voxelisation grid.
 %==========================================================================
 
 
