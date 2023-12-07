@@ -1,10 +1,6 @@
 function [coordNORMALS,varargout] = COMPUTE_mesh_normals(meshdataIN,invertYN)
 % COMPUTE_mesh_normals  Calculate the normals for each facet of a triangular mesh
 %==========================================================================
-% AUTHOR        Adam H. Aitkenhead
-% CONTACT       adam.aitkenhead@physics.cr.man.ac.uk
-% INSTITUTION   The Christie NHS Foundation Trust
-% DATE          March 2010
 % PURPOSE       Calculate the normal vectors for each facet of a triangular
 %               mesh.  The ordering of the vertices
 %               (clockwise/anticlockwise) is also checked for all facets if
@@ -39,19 +35,6 @@ function [coordNORMALS,varargout] = COMPUTE_mesh_normals(meshdataIN,invertYN)
 %               vertices in each facet may be slow for large meshes.
 %             - It may not be possible to compute <meshdataOUT> for
 %               non-manifold meshes.
-%==========================================================================
-
-%==========================================================================
-% VERSION  USER  CHANGES
-% -------  ----  -------
-% 100331   AHA   Original version
-% 101129   AHA   Can now check the ordering of the facet vertices.
-% 101130   AHA   <meshdataIN> can now be in either of two formats.
-% 101201   AHA   Only check the vertex ordering if that is required as one
-%                of the outputs, as it can be slow for large meshes.
-% 101201   AHA   Add the flag invertYN and make it possible to invert the
-%                mesh
-% 111004   AHA   Housekeeping tidy-up
 %==========================================================================
 
 %======================================================
