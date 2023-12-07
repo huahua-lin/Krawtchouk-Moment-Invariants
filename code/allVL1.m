@@ -29,14 +29,7 @@ function v = allVL1(n, L1, L1ops, MaxNbSol)
 %    This function can be used to generate all orders of all
 %    multivariable polynomials of degree p in R^n:
 %         Order = allVL1(n, p)
-% Author: Bruno Luong
-% Original, 30/nov/2007
-% Version 1.1, 30/apr/2008: Add H1 line as suggested by John D'Errico
-%         1.2, 17/may/2009: Possibility to get the number of permutations
-%                           alone (set fourth parameter MaxNbSol to NaN)
-%         1.3, 16/Sep/2009: Correct bug for number of solution
-%         1.4, 18/Dec/2010: + non-recursive engine
-%         1.5: 01/Aug/2020: fix bug of AllVL1(1,1) returns wrong result
+
 global MaxCounter;
 if nargin<3 || isempty(L1ops)
     L1ops = '==';
