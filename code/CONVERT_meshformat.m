@@ -1,9 +1,6 @@
 function [varargout] = CONVERT_meshformat(varargin)
 %CONVERT_meshformat  Convert mesh data from array to faces,vertices format or vice versa
 %==========================================================================
-% AUTHOR        Adam H. Aitkenhead
-% CONTACT       adam.aitkenhead@christie.nhs.uk
-% INSTITUTION   The Christie NHS Foundation Trust
 %
 % USAGE         [faces,vertices] = CONVERT_meshformat(meshXYZ)
 %         or... [meshXYZ]        = CONVERT_meshformat(faces,vertices)
@@ -20,13 +17,6 @@ function [varargout] = CONVERT_meshformat(varargin)
 %               faces    - Nx3 array   - A list of the vertices used in
 %                          each facet of the mesh, identified using the row
 %                          number in the array vertices.
-%==========================================================================
-
-%==========================================================================
-% VERSION  USER  CHANGES
-% -------  ----  -------
-% 100817   AHA   Original version
-% 111104   AHA   Housekeeping tidy-up.
 %==========================================================================
 
 
