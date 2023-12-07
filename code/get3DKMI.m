@@ -1,10 +1,6 @@
 function invariants = get3DKMI(arr, dim, varargin)
 % get3DKMI Extract the Krawtchouk Moment Invariants (KMI) for 3D images
 %==========================================================================
-% AUTHOR        Huahua Lin
-% CONTACT       hl4u21@soton.ac.uk
-% INSTITUTION   The University of Southampton
-% DATE          August 2023
 %
 % USAGE         invariants = get3DKMI(arr, dim)
 %        or...  invariants = get3DKMI(arr, dim, POI)
