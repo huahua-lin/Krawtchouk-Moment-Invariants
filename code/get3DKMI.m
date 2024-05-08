@@ -68,5 +68,13 @@ for idx = 1:length(varargin)
     
 end
 
+if local
+    disp('Local features are being extracted...')
+else
+    disp('Global features are being extracted...')
+end
+    
 const = prepStep(dim, order);
 invariants = extractFeatures(img, local, relPOI, const);
+disp('The extracted features are:')
+disp(invariants)
