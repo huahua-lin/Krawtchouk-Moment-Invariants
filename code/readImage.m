@@ -1,6 +1,19 @@
-% This script produces a corresponding 3D array that represents the input image.
-
 function img = readImage(path, dim)
+% readImage produces a corresponding 3D array that represents the input image
+%==========================================================================
+%
+% USAGE         img = readImage(path, dim)
+%
+% INPUTS
+%
+%               path   - Mandatory    - str         - A string defining the path that contains the slices/3D image file.
+%
+%               dim    - Mandatory    - int         - An integer defining the intended size of the input image.
+%
+% OUTPUTS
+%
+%               img    - dimxdimxdim array          - A corresponding 3D array that represents the input image.
+%==========================================================================
     if isfolder(path)
         FileList = natsortfiles(dir(fullfile(path, '*.png')));
         numOfSlices = length(FileList);
