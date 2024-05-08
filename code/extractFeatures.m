@@ -179,5 +179,4 @@ function invariants = extractFeatures(fs, local, poi, const)
     end
     clear V;
 
-
-    
+    disp('Pass: extract features from the image')
