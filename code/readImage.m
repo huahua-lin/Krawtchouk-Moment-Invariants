@@ -77,3 +77,5 @@ function img = readImage(path, dim)
     else
         img = mask;
     end
+
+    disp('Pass: read the image')
