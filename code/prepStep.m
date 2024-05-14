@@ -40,8 +40,7 @@ function const = prepStep(N, order)
     for n = 0:order
         for i = 0:n
             for k = i:n
-%                 const.a(i+1,n+1) = const.a(i+1,n+1) + pochhammer(-n,k)/(pochhammer(-N+1,k) * factorial(k)) * (-2)^k * stirling_1st_kind(k,i);
-                const.a(i+1,n+1) = const.a(i+1,n+1) + ((-1)^k * factorial(n) * factorial(N-1-k))/(p^k * factorial(N-1) * factorial(n-k) * factorial(k)) * stirling_1st_kind(k,i);
+                const.a(i+1,n+1) = const.a(i+1,n+1) + pochhammer(-n,k)/(pochhammer(-N+1,k) * factorial(k)) * (-2)^k * stirling_1st_kind(k,i);
             end
         end
     end
