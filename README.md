@@ -16,6 +16,6 @@ path = 'please input the path that contains the slices/3D image file';
 arr = readImage(path, dim);
 invariants = get3DKMI(arr, dim);
 ```
-Two 3D images from McGill's 3D shape benchmark website in the **example_data** folder are provided for code execution.
+Two 3D images from McGill's 3D shape benchmark website and One example data of *Menardella exilis* in the **example_data** folder are provided for code execution.
 
 A quick-start guide and more examples are available at https://krawtchouk.github.io/.
