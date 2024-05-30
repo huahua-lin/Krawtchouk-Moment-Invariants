@@ -1,4 +1,4 @@
-### 3DKMI
+# 3DKMI - Three-Dimensional Krawtchouk Moment Invariants
 
 This is the **MATLAB** package for extracting **3D Krawtchouk moment invariants**.
 
